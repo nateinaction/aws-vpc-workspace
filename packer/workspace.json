@@ -1,0 +1,29 @@
+{
+  "builders": [
+    {
+      "region": "us-east-1",
+      "type": "amazon-ebs",
+      "ami_name": "nategay-workspace-aws-ubuntu-18.04-{{timestamp}}",
+      "instance_type": "t3.nano",
+      "ssh_username": "ubuntu",
+      "source_ami_filter": {
+        "filters": {
+          "virtualization-type": "hvm",
+          "name": "nategay-base-aws-ubuntu-18.04*",
+          "root-device-type": "ebs"
+        },
+        "owners": ["self"],
+        "most_recent": true
+      }
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "inline":[
+        "sudo apt-get update",
+        "sudo apt-get install -y build-essential ca-certificates curl git tmux vim"
+      ]
+    }
+  ]
+}

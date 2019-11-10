@@ -1,0 +1,42 @@
+{
+  "builders": [
+    {
+      "region": "us-east-1",
+      "type": "amazon-ebs",
+      "ami_name": "nategay-base-aws-ubuntu-18.04-{{timestamp}}",
+      "instance_type": "t3.nano",
+      "ssh_username": "ubuntu",
+      "source_ami_filter": {
+        "filters": {
+          "virtualization-type": "hvm",
+          "name": "ubuntu/images/*ubuntu-bionic-18.04-amd64-*",
+          "root-device-type": "ebs"
+        },
+        "owners": ["099720109477"],
+        "most_recent": true
+      }
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "file",
+      "source": "./files/etc/cron.d/sync_ssh_keys_cron",
+      "destination": "/tmp/sync_ssh_keys_cron"
+    },
+    {
+      "type": "file",
+      "source": "./files/usr/local/bin/sync_ssh_keys.sh",
+      "destination": "/tmp/sync_ssh_keys.sh"
+    },
+    {
+      "type": "shell",
+      "inline":[
+        "sudo mv /tmp/sync_ssh_keys_cron /etc/cron.d/",
+        "sudo mv /tmp/sync_ssh_keys.sh /usr/local/bin/",
+        "sudo add-apt-repository \"deb http://archive.ubuntu.com/ubuntu $(lsb_release -sc) main universe restricted multiverse\"",
+        "sudo apt-get update",
+        "sudo apt-get install -y awscli mosh"
+      ]
+    }
+  ]
+}
