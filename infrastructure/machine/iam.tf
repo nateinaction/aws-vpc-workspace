@@ -1,3 +1,7 @@
+data "aws_s3_bucket" "users_public_key_bucket" {
+  bucket = var.users_public_key_bucket
+}
+
 // Policies
 resource "aws_iam_policy" "read_s3_buckets" {
   name        = "read_s3_buckets"

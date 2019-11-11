@@ -22,7 +22,7 @@
       "type": "shell",
       "inline":[
         "sudo apt-get update",
-        "sudo apt-get install -y build-essential ca-certificates curl git tmux vim"
+        "sudo apt-get install -y build-essential ca-certificates curl docker git tmux vim"
       ]
     }
   ]

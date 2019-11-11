@@ -3,7 +3,7 @@ resource "cloudflare_record" "execution_ipv4" {
 
   zone_id = var.cloudflare_zone_id
   name    = "workspace"
-  value   = aws_instance.workspace[count.index].public_ip
+  value   = var.workspace_ipv4
   type    = "A"
 }
 
@@ -12,6 +12,6 @@ resource "cloudflare_record" "execution_ipv6" {
 
   zone_id = var.cloudflare_zone_id
   name    = "workspace"
-  value   = aws_instance.workspace[count.index].ipv6_addresses[0]
+  value   = var.workspace_ipv6
   type    = "AAAA"
 }

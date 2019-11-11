@@ -22,12 +22,9 @@ resource "aws_instance" "workspace" {
   instance_type        = var.workspace_instance_type
   iam_instance_profile = aws_iam_instance_profile.workspace_iam_instance_profile.name
 
-  subnet_id                   = aws_subnet.public[count.index].id
+  subnet_id                   = var.workspace_subnet_id
   associate_public_ip_address = true
-  vpc_security_group_ids = [
-    aws_vpc.network.default_security_group_id,
-    aws_security_group.workspace.id,
-  ]
+  vpc_security_group_ids = var.workspace_security_group_ids
 
   ebs_optimized = true
   root_block_device {
