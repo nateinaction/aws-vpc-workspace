@@ -8,7 +8,7 @@ PACKER_RUN := $(DOCKER_RUN) -v `pwd`/image:$(WORKDIR):delegated $(AWS_VAULT_ENV_
 
 all: lint setup plan
 
-lint: validate_packer_template lint_terraform
+lint: validate_image_templates lint_terraform
 
 lint_terraform:
 	$(TERRAFORM_RUN) fmt
@@ -25,14 +25,14 @@ deploy:
 destroy:
 	aws-vault exec worldpeace -- $(TERRAFORM_RUN) destroy
 
-validate_packer_template:
+validate_image_templates:
 	$(PACKER_RUN) validate base.json
 	$(PACKER_RUN) validate workspace.json
 
-build_ami: build_ami_base build_ami_workspace
+build_images: build_image_base build_image_workspace
 
-build_ami_base:
+build_image_base:
 	aws-vault exec worldpeace -- $(PACKER_RUN) build base.json
 
-build_ami_workspace:
+build_image_workspace:
 	aws-vault exec worldpeace -- $(PACKER_RUN) build workspace.json
