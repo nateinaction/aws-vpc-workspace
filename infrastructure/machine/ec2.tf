@@ -26,7 +26,6 @@ resource "aws_instance" "workspace" {
   associate_public_ip_address = true
   vpc_security_group_ids = var.workspace_security_group_ids
 
-  ebs_optimized = true
   root_block_device {
     encrypted = true
   }
