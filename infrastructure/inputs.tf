@@ -28,6 +28,10 @@ variable "workspace_instance_type" {
   description = "Instance type to use for the workspace server"
   type        = string
 }
+variable "ami_filter_string" {
+  description = "Filter used to find the correct AMI"
+  type        = string
+}
 
 // S3
 variable "users_public_key_bucket" {

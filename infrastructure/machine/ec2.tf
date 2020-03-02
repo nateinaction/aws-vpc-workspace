@@ -4,11 +4,11 @@ data "aws_ami" "ubuntu" {
 
   filter {
     name   = "name"
-    values = ["nategay-workspace-aws-ubuntu-18.04*"]
+    values = [var.ami_filter_string]
   }
 }
 
-data "template_file" "argo_protected_userdata" {
+data "template_file" "userdata" {
   template = file("${path.module}/files/userdata.template.sh")
   vars = {
     users_public_key_bucket = var.users_public_key_bucket
@@ -29,7 +29,7 @@ resource "aws_instance" "workspace" {
   root_block_device {
     encrypted = true
   }
-  user_data = data.template_file.argo_protected_userdata.rendered
+  user_data = data.template_file.userdata.rendered
 
   tags = {
     Name = var.project_name

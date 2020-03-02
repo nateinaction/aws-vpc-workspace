@@ -18,6 +18,10 @@ variable "workspace_instance_type" {
   description = "Instance type to use for the workspace server"
   type = string
 }
+variable "ami_filter_string" {
+  description = "Filter used to find the correct AMI"
+  type = string
+}
 variable "workspace_security_group_ids" {
   description = "IDs of the security groups the workspace should be in"
   type = list(string)
