@@ -26,6 +26,7 @@
     {
       "type": "shell",
       "inline":[
+        "sudo hostname workspace",
         "sudo mv /tmp/.tmux.conf /etc/skel/.tmux.conf",
         "sudo apt-get update",
         "sudo apt-get install -y build-essential ca-certificates curl docker git tmux vim"
