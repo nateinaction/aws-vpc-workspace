@@ -11,16 +11,17 @@ provider "cloudflare" {
 }
 
 module "network" {
-  source = "./network"
+  source = "../../modules/network"
 
   project_name = var.project_name
 }
 
 module "machine" {
-  source = "./machine"
+  source = "../../modules/machine"
 
   project_name                 = var.project_name
   workspace_enabled            = var.workspace_enabled
+  workspace_subdomain          = var.workspace_subdomain
   workspace_instance_type      = var.workspace_instance_type
   ami_filter_string            = var.ami_filter_string
   workspace_subnet_id          = module.network.workspace_subnet_id
@@ -29,10 +30,11 @@ module "machine" {
 }
 
 module "dns" {
-  source = "./dns"
+  source = "../../modules/dns"
 
-  workspace_enabled  = var.workspace_enabled
-  workspace_ipv4     = module.machine.workspace_ipv4
-  workspace_ipv6     = module.machine.workspace_ipv6
-  cloudflare_zone_id = var.cloudflare_zone_id
+  workspace_enabled   = var.workspace_enabled
+  workspace_subdomain = var.workspace_subdomain
+  workspace_ipv4      = module.machine.workspace_ipv4
+  workspace_ipv6      = module.machine.workspace_ipv6
+  cloudflare_zone_id  = var.cloudflare_zone_id
 }

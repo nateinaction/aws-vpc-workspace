@@ -30,6 +30,10 @@ variable "workspace_subnet_id" {
   description = "ID of the subnet where the workspace will live"
   type = string
 }
+variable "workspace_subdomain" {
+  description = "The workspace will be available at this subdomain"
+  type = string
+}
 
 // S3
 variable "users_public_key_bucket" {

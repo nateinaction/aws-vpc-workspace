@@ -4,7 +4,7 @@
       "region": "us-east-1",
       "type": "amazon-ebs",
       "ami_name": "nategay-workspace-aws-ubuntu-18.04-{{timestamp}}",
-      "instance_type": "t3.nano",
+      "instance_type": "t3.micro",
       "ssh_username": "ubuntu",
       "source_ami_filter": {
         "filters": {
@@ -26,7 +26,6 @@
     {
       "type": "shell",
       "inline":[
-        "sudo hostname workspace",
         "sudo mv /tmp/.tmux.conf /etc/skel/.tmux.conf",
         "sudo apt-get update",
         "sudo apt-get install -y build-essential ca-certificates curl docker git tmux vim"

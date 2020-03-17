@@ -7,6 +7,10 @@ variable "workspace_enabled" {
   description = "Should the workspace be online?"
   type        = bool
 }
+variable "workspace_subdomain" {
+  description = "The workspace will be available at this subdomain"
+  type        = string
+}
 
 // Provider
 variable "aws_account_id" {
@@ -19,11 +23,6 @@ variable "aws_region" {
 }
 
 // EC2
-variable "ssh_key" {
-  description = "SSH key name to use for the workspace server"
-  default     = ""
-  type        = string
-}
 variable "workspace_instance_type" {
   description = "Instance type to use for the workspace server"
   type        = string

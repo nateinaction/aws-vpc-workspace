@@ -11,6 +11,10 @@ variable "workspace_ipv6" {
   description = "Public IPv6 address for workspace"
   type = string
 }
+variable "workspace_subdomain" {
+  description = "The workspace will be available at this subdomain"
+  type = string
+}
 
 // Cloudflare
 variable "cloudflare_zone_id" {
