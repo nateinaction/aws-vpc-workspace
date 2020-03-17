@@ -19,14 +19,20 @@
   ],
   "provisioners": [
     {
+      "type": "shell",
+      "inline":[
+        "mkdir -p /tmp/etc/skel/"
+      ]
+    },
+    {
       "type": "file",
-      "source": "./files/etc/skel/.tmux.conf",
-      "destination": "/tmp/.tmux.conf"
+      "source": "./files/etc/skel/",
+      "destination": "/tmp/etc/skel/"
     },
     {
       "type": "shell",
       "inline":[
-        "sudo mv /tmp/.tmux.conf /etc/skel/.tmux.conf",
+        "sudo rsync -r /tmp/etc/skel/ /etc/skel/",
         "sudo apt-get update",
         "sudo apt-get install -y build-essential ca-certificates curl docker git tmux vim"
       ]
