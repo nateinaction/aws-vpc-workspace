@@ -11,6 +11,10 @@ variable "workspace_subdomain" {
   description = "The workspace will be available at this subdomain"
   type        = string
 }
+variable "workspace_tld" {
+  description = "The workspace will be available at this top level domain"
+  type = string
+}
 
 // Provider
 variable "aws_account_id" {
@@ -54,4 +58,10 @@ variable "cloudflare_account_id" {
 variable "cloudflare_zone_id" {
   description = "Zone ID for the domain managed by Cloudflare"
   type        = string
+}
+
+// Github
+variable "github_access_token" {
+  description = "Github API Access Token"
+  type = string
 }

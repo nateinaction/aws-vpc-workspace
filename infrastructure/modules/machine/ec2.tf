@@ -12,7 +12,8 @@ data "template_file" "userdata" {
   template = file("${path.module}/files/userdata.template.sh")
   vars = {
     users_public_key_bucket = var.users_public_key_bucket
-    workspace_subdomain = var.workspace_subdomain
+    workspace_domain = "${var.workspace_subdomain}.${var.workspace_tld}"
+    github_access_token = var.github_access_token
   }
 }
 

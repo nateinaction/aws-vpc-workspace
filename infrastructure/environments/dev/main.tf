@@ -22,11 +22,13 @@ module "machine" {
   project_name                 = var.project_name
   workspace_enabled            = var.workspace_enabled
   workspace_subdomain          = var.workspace_subdomain
+  workspace_tld                = var.workspace_tld
   workspace_instance_type      = var.workspace_instance_type
   ami_filter_string            = var.ami_filter_string
   workspace_subnet_id          = module.network.workspace_subnet_id
   workspace_security_group_ids = module.network.workspace_security_group_ids
   users_public_key_bucket      = var.users_public_key_bucket
+  github_access_token          = var.github_access_token
 }
 
 module "dns" {

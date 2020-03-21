@@ -34,6 +34,14 @@ variable "workspace_subdomain" {
   description = "The workspace will be available at this subdomain"
   type = string
 }
+variable "workspace_tld" {
+  description = "The workspace will be available at this top level domain"
+  type = string
+}
+variable "github_access_token" {
+  description = "Github API Access Token"
+  type = string
+}
 
 // S3
 variable "users_public_key_bucket" {
